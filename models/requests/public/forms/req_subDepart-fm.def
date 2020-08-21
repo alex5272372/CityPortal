@@ -1,0 +1,6 @@
+// @! "do not remove comments below unless you know what you do!"
+// @isDefault "false"
+// @entity "req_subDepart"
+// @formType "vue"
+// @caption "SubDeaprtments"
+// @description "SubDeaprtments"
