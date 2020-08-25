@@ -1,21 +1,30 @@
 <template>
-  <el-form label-position="left" label-width="180px" class="req_subDepartment__form">
-  </el-form>
+  <div class="u-form-layout">
+    <u-toolbar />
+    <u-form-container
+      v-loading.body="loading"
+    >
+      <u-auto-field attribute-name="name" />
+      <u-auto-field attribute-name="department" />
+    </u-form-container>
+  </div>
 </template>
 
 <script>
-module.exports.default = {}
+const { Form } = require("@unitybase/adminui-vue")
+const { mapGetters } = require('vuex')
 
-const { mountUtils, Form } = require("@unitybase/adminui-vue")
-module.exports.mount = function({ title, entity, instanceID, formCode, rootComponent }) {
-  // mountUtils.mountModal
-  Form({ component: rootComponent, title, formCode, entity: entity }).mount()
+module.exports.mount = cfg => {
+  Form(cfg)
+    .processing()
+    .validation()
+    .mount()
+}
+
+module.exports.default = {
+  name: 'ReqSubDepart',
+  computed: {
+    ...mapGetters(['loading'])
+  }
 }
 </script>
-
-<style>
-.req_subDepartment__form {
-  overflow: auto;
-  height: 100%;
-}
-</style>
