@@ -16,8 +16,7 @@ module.exports = function (session) {
         caption: 'City Requests'
       }
     })
-  }
-  else {
+  } else {
     console.info('\t\tuse existed desktop with code `CityReq_desktop`', desktopID)
   }
 
@@ -40,12 +39,11 @@ module.exports = function (session) {
         displayOrder: 10
       }
     })
-  }
-  else {
+  } else {
     console.info('\t\tuse existed folder with code `req_departments_folder`', folderID)
   }
 
-  lastID = conn.lookup('ubm_navshortcut', 'ID', { expression: 'code', condition: 'equal', values: { code: 'req_depart' } })
+  let lastID = conn.lookup('ubm_navshortcut', 'ID', { expression: 'code', condition: 'equal', values: { code: 'req_depart' } })
   if (!lastID) {
     console.log('\t\t\tcreate `Department` shortcut')
     lastID = conn.insert({
@@ -64,8 +62,7 @@ module.exports = function (session) {
         }, null, '\t')
       }
     })
-  }
-  else {
+  } else {
     console.info('\t\tuse existed shortcut with code `req_depart`', lastID)
   }
 
@@ -92,8 +89,7 @@ module.exports = function (session) {
         }, null, '\t')
       }
     })
-  }
-  else {
+  } else {
     console.info('\t\tuse existed shortcut with code `req_subDepart`', lastID)
   }
 
@@ -143,8 +139,7 @@ module.exports = function (session) {
         }, null, '\t')
       }
     })
-  }
-  else {
+  } else {
     console.info('\t\tuse existed shortcut with code `req_cityRegion`', lastID)
   }
 }

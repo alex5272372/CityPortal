@@ -1,57 +1,58 @@
-//@! "do not remove comments below unless you know what you do!"
-//@isDefault "false"
-//@entity "req_reqList"
-//@formType "auto"
-//@caption "My request list"
-//@description "reqList"
+// @! "do not remove comments below unless you know what you do!"
+// @isDefault "false"
+// @entity "req_reqList"
+// @formType "auto"
+// @caption "My request list"
+// @description "reqList"
+
 exports.formDef = {
   parentConfig: {
     layout: {
-      type: "vbox",
+      type: 'vbox',
       align: 'stretch'
     }
   },
   items: [
     {
       layout: {
-        type: 'hbox' //Horizontal positioning of elements
+        type: 'hbox'
       },
       items: [
         {
-          attributeName: "reqDate", // Request Date
-          flex: 1                   // Proportional width of the element
+          attributeName: 'reqDate',
+          flex: 1
         },
         {
-          attributeName: "status",
+          attributeName: 'status',
           flex: 3
         }
       ]
     },
     {
       layout: {
-        type: 'hbox' //  Horizontal positioning of elements
+        type: 'hbox'
       },
       items: [
         {
-          attributeName: "department",/*Request department*/
-          flex: 2 // Proportional width of the element
+          attributeName: 'department',
+          flex: 2
         },
         {
-          attributeName: "subDepartment", /* Subdepartment */
+          attributeName: 'subDepartment',
           flex: 3
         }
       ]
     },
-    { attributeName: "applicantPhone" /*Applicant`s phone*/ },
-    { attributeName: "applicantInfo" /*Applicant`s contact info*/ },
-    { attributeName: "reqText" /*Text of Request*/ },
-    { attributeName: "answer" /*Request answer*/ },
+    { attributeName: 'applicantPhone' },
+    { attributeName: 'applicantInfo' },
+    { attributeName: 'reqText' },
+    { attributeName: 'answer' },
     {
-      attributeName: "reqDoc",
-      expanded: true,            // Show on form
+      attributeName: 'reqDoc',
+      expanded: true,
       height: 200,
-      layout: 'auto',            // Auto width
-      contentTypeMapping: {'image/jpeg': 'UB.ux.UBImg'}
+      layout: 'auto',
+      contentTypeMapping: { 'image/jpeg': 'UB.ux.UBImg' }
     }
   ]
 }

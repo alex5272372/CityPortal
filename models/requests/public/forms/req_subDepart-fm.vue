@@ -11,7 +11,7 @@
 </template>
 
 <script>
-const { Form } = require("@unitybase/adminui-vue")
+const { Form } = require('@unitybase/adminui-vue')
 const { mapGetters } = require('vuex')
 
 module.exports.mount = cfg => {
