@@ -6,6 +6,7 @@
     >
       <u-auto-field attribute-name="name" />
       <u-auto-field attribute-name="department" />
+      <el-button @click="handleClick">Default</el-button>
     </u-form-container>
   </div>
 </template>
@@ -25,6 +26,11 @@ module.exports.default = {
   name: 'ReqSubDepart',
   computed: {
     ...mapGetters(['loading'])
+  },
+  methods: {
+    handleClick () {
+      console.log('Default click')
+    }
   }
 }
 </script>

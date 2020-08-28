@@ -10,6 +10,7 @@ exports.formDef = {
     { attributeName: 'name' },
     { attributeName: 'postAddr' },
     { attributeName: 'phoneNum' },
+    { attributeName: 'roleInSystem' },
     {
       xtype: 'ubdetailgrid',
       title: 'Subdepartments',

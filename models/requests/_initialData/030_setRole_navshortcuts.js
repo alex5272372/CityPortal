@@ -1,4 +1,4 @@
-/* global nsha256 */
+/* global */
 
 module.exports = function (session) {
   const conn = session.connection
@@ -13,8 +13,7 @@ module.exports = function (session) {
       execParams: {
         name: 'hd_user',
         firstName: 'hd',
-        lastName: 'user',
-        uPasswordHashHexa: nsha256('salt' + 'hduser')
+        lastName: 'user'
       }
     })
   }
@@ -110,8 +109,7 @@ module.exports = function (session) {
       execParams: {
         name: 'ed_user',
         firstName: 'ed',
-        lastName: 'user',
-        uPasswordHashHexa: nsha256('salt' + 'eduser')
+        lastName: 'user'
       }
     })
   }
