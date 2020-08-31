@@ -2,15 +2,34 @@
 // @isDefault "false"
 // @entity "req_depart"
 // @formType "auto"
-// @caption "Deaprtments"
-// @description "Departaments"
+// @caption "Departments"
+// @description "Departments"
 
 exports.formDef = {
+  dockedItems: [{
+    xtype: 'toolbar',
+    dock: 'top',
+    items: [{
+      orderId: 5,
+      actionId: 'ActionReassignedAll'
+    }]
+  }],
   items: [
-    { attributeName: 'name' },
-    { attributeName: 'postAddr' },
-    { attributeName: 'phoneNum' },
-    { attributeName: 'roleInSystem' },
+    {
+      layout: 'hbox',
+      items: [{
+        items: [
+          { attributeName: 'ID' },
+          { attributeName: 'name' },
+          { attributeName: 'roleInSystem', width: 300 }
+        ]
+      }, {
+        items: [
+          { attributeName: 'postAddr' },
+          { attributeName: 'phoneNum' }
+        ]
+      }]
+    },
     {
       xtype: 'ubdetailgrid',
       title: 'Subdepartments',
@@ -20,6 +39,23 @@ exports.formDef = {
         fieldList: [
           'ID',
           'name'
+        ]
+      },
+      masterFields: ['ID'],
+      detailFields: ['department']
+    },
+    {
+      xtype: 'ubdetailgrid',
+      title: 'Request List',
+      entityConfig: {
+        entity: 'req_reqList',
+        method: 'select',
+        fieldList: [
+          'ID',
+          'reqDate',
+          'status',
+          'reqText',
+          'answer'
         ]
       },
       masterFields: ['ID'],

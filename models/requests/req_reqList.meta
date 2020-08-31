@@ -75,6 +75,11 @@
     "mStorage": {
       "simpleAudit": true
     },
+    "dataHistory": {},
+    "softLock": {
+      "lockIdentifier": "ID",
+      "lockEntity": "req_reqList"
+    },
     "rls": {
       "expression": "'(' + $.currentOwner() + ' OR ' + '[department.roleInSystem] in (' + Session.userRoles + '))'"
     }
