@@ -1,0 +1,23 @@
+<!--@name "Request list month"-->
+<!--@model "requests"-->
+
+<!--%pageOrientation:portrait--><h1 style="text-align: center;">Request List current month</h1>
+<p><span style="font-size: 12pt;">current month: {{curMonth}} , year: 2017</span></p>
+<p><span style="font-size: 14pt;">Closed requests</span></p>
+<table style="word-break: break-all; width: 779px;" border="1px" width="779px" cellspacing="0" cellpadding="3px">
+<tbody>
+<tr>
+<td style="width: 808px; cursor: w-resize; text-align: center;"><strong><span style="font-size: 10pt;">Request date</span></strong></td>
+<td style="width: 772px; cursor: default; text-align: center;"><strong><span style="font-size: 10pt;">Applicant info</span></strong></td>
+<td style="width: 772px; cursor: default; text-align: center;"><strong><span style="font-size: 10pt;">Request text</span></strong></td>
+<td style="width: 760px; cursor: default; text-align: center;"><strong><span style="font-size: 10pt;">Answer</span></strong></td>
+</tr>
+<!--{{#req_reqList}}-->
+<tr>
+<td class=" tinymce_templated_td" style="width: 808px; cursor: w-resize;">{{reqDate}}</td>
+<td style="width: 772px;">{{applicantInfo}}</td>
+<td style="width: 772px;">{{reqText}}</td>
+<td style="width: 760px; cursor: w-resize;">{{answer}}</td>
+</tr>
+<!--{{/req_reqList}}--></tbody>
+</table>

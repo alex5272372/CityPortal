@@ -17,8 +17,8 @@ Ext.define('requests.reassignAll', {
 
   items: [
     {
-      type: 'ubcombobox',
-      width: 400,
+      xtype: 'ubcombobox',
+      width: 350,
       name: 'cbxDep',
       fieldLabel: UB.i18n('department'),
       allowBlank: false,
@@ -32,12 +32,10 @@ Ext.define('requests.reassignAll', {
   buttons: [{
     ubID: 'btnOK',
     text: UB.i18n('ok'),
-    // glyph: UB.core.UBUtil.glyphs.faSave,
     formBind: true
   }, {
     ubID: 'btnCancel',
-    text: UB.i18n('cancel'),
-    // glyph: UB.core.UBUtil.glyphs.faTimes
+    text: UB.i18n('cancel')
   }],
 
   initComponent: function () {

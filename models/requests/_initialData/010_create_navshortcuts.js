@@ -1,3 +1,5 @@
+/* global $App */
+
 module.exports = function (session) {
   const conn = session.connection
 
@@ -55,7 +57,7 @@ module.exports = function (session) {
         code: 'req_depart',
         caption: 'Departments',
         iconCls: 'fa fa-building-o',
-        displayOrder: 10,
+        displayOrder: 20,
         cmdCode: JSON.stringify({
           cmdType: 'showList',
           cmdData: { params: [{ entity: 'req_depart', method: 'select', fieldList: '*' }] }
@@ -82,7 +84,7 @@ module.exports = function (session) {
         code: 'req_Subdepart',
         caption: 'SubDepartments',
         iconCls: 'fa fa-user-circle-o',
-        displayOrder: 20,
+        displayOrder: 30,
         cmdCode: JSON.stringify({
           cmdType: 'showList',
           cmdData: { params: [{ entity: 'req_subDepart', method: 'select', fieldList: '*' }] }
@@ -108,7 +110,7 @@ module.exports = function (session) {
         code: 'req_reqList',
         caption: 'Request list',
         iconCls: 'fa fa-clone',
-        displayOrder: 20,
+        displayOrder: 40,
         cmdCode: JSON.stringify({
           cmdType: 'showList',
           cmdData: { params: [{ entity: 'req_reqList', method: 'select', fieldList: '*' }] }
@@ -132,7 +134,7 @@ module.exports = function (session) {
         code: 'req_cityRegion',
         caption: 'City region',
         iconCls: 'fa fa-braille',
-        displayOrder: 20,
+        displayOrder: 50,
         cmdCode: JSON.stringify({
           cmdType: 'showList',
           cmdData: { params: [{ entity: 'req_cityRegion', method: 'select', fieldList: '*' }] }
@@ -141,5 +143,56 @@ module.exports = function (session) {
     })
   } else {
     console.info('\t\tuse existed shortcut with code `req_cityRegion`', lastID)
+  }
+
+  lastID = conn.lookup('ubm_navshortcut', 'ID', {
+    expression: 'code',
+    condition: 'equal',
+    values: { code: 'req_user' }
+  })
+  if (!lastID) {
+    console.log('\t\tcreate `Users` shortcut')
+    lastID = conn.insert({
+      fieldList: ['ID'],
+      entity: 'ubm_navshortcut',
+      execParams: {
+        desktopID: desktopID,
+        code: 'req_user',
+        caption: 'Users',
+        iconCls: 'u-icon-person',
+        displayOrder: 60,
+        cmdCode: `{
+          "cmdType": "showList",
+          "cmdData": {
+            "params": [{
+              "entity": "req_user",
+              "method": "select",
+              "fieldList": [
+                "*"
+              ]
+            }]
+          },
+          "customActions": [{
+            "actionText": "Add users",
+            "iconCls": "u-icon-download",
+            "text": "Add users",
+            "handler": function(cmp) {
+              $App.connection.run({
+                entity: 'req_user',
+                method: 'addUsers'
+              }).then(function(result) {
+                if (result) {
+                  $App.dialogInfo('Завантажено успішно')
+                } else {
+                  $App.dialogInfo('Під час завантаження сталася помилка')
+                }
+              })
+            }
+          }]
+        }`
+      }
+    })
+  } else {
+    console.info('\t\tuse existed shortcut with code `req_user`', lastID)
   }
 }
