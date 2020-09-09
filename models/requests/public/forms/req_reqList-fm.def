@@ -47,6 +47,7 @@ exports.formDef = {
     { attributeName: 'applicantInfo' },
     { attributeName: 'reqText' },
     { attributeName: 'answer' },
+    { attributeName: 'regionList' },
     {
       attributeName: 'reqDoc',
       expanded: true,

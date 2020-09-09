@@ -13,6 +13,11 @@ Attempt to alter a column uba_user.trustedIP as (typeChanged: false, sizeChanged
  
 -- Create tables
 --#############################################################
+CREATE TABLE req_cityRegion (
+	ID BIGINT NOT NULL PRIMARY KEY,
+	name VARCHAR(255) NOT NULL --Region name
+);
+--
 CREATE TABLE req_depart (
 	ID BIGINT NOT NULL PRIMARY KEY,
 	name VARCHAR(255) NOT NULL, --Department Name
@@ -20,6 +25,14 @@ CREATE TABLE req_depart (
 	phoneNum VARCHAR(255) NOT NULL, --Department Phone
 	roleInSystem BIGINT NULL --Role in System
 	, CONSTRAINT FK_REQ_DEPART_ROLEINSYSTEM_REF_ROLE FOREIGN KEY (ROLEINSYSTEM) REFERENCES uba_role(ID)	
+);
+--
+CREATE TABLE req_city_region_map (
+	sourceID BIGINT NOT NULL,
+	destID BIGINT NOT NULL
+ ,CONSTRAINT PK_req_city_region_map PRIMARY KEY ( sourceID,destID) 
+	, CONSTRAINT FK_REQ_CITY_REGION_MAP_SOURCEID_REF_REQ FOREIGN KEY (SOURCEID) REFERENCES req_reqList(ID)	
+	, CONSTRAINT FK_REQ_CITY_REGION_MAP_DESTID_REF_ FOREIGN KEY (DESTID) REFERENCES req_cityRegion(ID)	
 );
 --
 CREATE TABLE req_reqList (
@@ -450,9 +463,13 @@ UPDATE ubs_settings SET defaultValue_uk = defaultValue WHERE (1 = 1);
  
 -- Create indexes
 --#############################################################
+CREATE UNIQUE INDEX UIDX_REQ_CITYREGION_NAME ON req_cityRegion(NAME) ;
+--
 CREATE UNIQUE INDEX UIDX_REQ_DEPART_NAME ON req_depart(NAME) ;
 --
 CREATE INDEX IDX_REQ_DEPART_ROLEINSYSTEM ON req_depart(ROLEINSYSTEM) ;
+--
+CREATE INDEX IDX_req_city_region_map_DESTID ON req_city_region_map(DESTID) ;
 --
 CREATE INDEX IDX_REQ_DEPARTMENT ON req_reqList(DEPARTMENT) ;
 --

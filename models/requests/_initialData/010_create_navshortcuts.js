@@ -111,10 +111,31 @@ module.exports = function (session) {
         caption: 'Request list',
         iconCls: 'fa fa-clone',
         displayOrder: 40,
-        cmdCode: JSON.stringify({
-          cmdType: 'showList',
-          cmdData: { params: [{ entity: 'req_reqList', method: 'select', fieldList: '*' }] }
-        }, null, '\t')
+        cmdCode: `{
+          "cmdType": "showList",
+          "cmdData": {
+            "params": [{
+              "entity": "req_reqList",
+              "method": "select",
+              "fieldList": "*"
+            }]
+          },
+          "customActions": [{
+            "actionText": "Regions requests",
+            "iconCls": "u-icon-more",
+            "text": "Regions requests",
+            "handler": function(cmp) {
+                var config = {
+                  cmdType: 'showForm',
+                  method: 'select',
+                  formCode: 'req_cityRegion-select',
+                  entity: 'req_cityRegion'
+                 }
+                UB.core.UBApp.doCommand(config)
+             
+            }
+          }]
+        }`
       }
     })
   }
